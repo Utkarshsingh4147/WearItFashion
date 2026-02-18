@@ -5,7 +5,6 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
-import Products from './pages/Products'
 import Cart from './pages/Cart'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
@@ -13,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import ForgotPassword from './pages/auth/ForgotPassword'
 import ResetPassword from './pages/auth/ResetPassword'
+import Collection from './pages/Collection'
+import Product from './pages/Product'
 
 const App = () => {
   return (
@@ -27,7 +28,9 @@ const App = () => {
         <Route path='/register' element={<Register/>}/>
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
         <Route path='/reset-password' element={<ResetPassword/>}/>
-        <Route path='/products' element={<Products/>}/>
+        <Route path='/collection' element={<Collection/>}/>
+        <Route path="/collection/:categoryName" element={<Collection/>} />
+        <Route path="/product/:id" element={<Product/>} />
       </Routes>  
       <ToastContainer position="top-right" autoClose={3000} />
       <Footer/>    

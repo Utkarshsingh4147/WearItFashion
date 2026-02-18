@@ -3,20 +3,27 @@ const mongoose = require('mongoose');
 
 exports.getAllProduct = async (req, res) => {
     try {
+        const { category, sort } = req.query;
         const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 15;
-
+        const limit = parseInt(req.query.limit) || 12;
         const skip = (page - 1) * limit;
-        const totalProducts = await Product.countDocuments({ isActive: true });
 
-        const products = await Product.find({ isActive: true }).sort({ createdAt: -1 }).skip(skip).limit(limit);
+        let query = { isActive: true };
+        if (category) {
+            query.category = category; 
+        }
+        let sortBy = { createdAt: -1 };
+        if (sort === 'low-high') sortBy = { price: 1 };
+        if (sort === 'high-low') sortBy = { price: -1 };
 
-        return res.status(200).send({ success: true, products, currentPage: page, totalPage: Math.ceil(totalProducts / limit) })
+        const totalProducts = await Product.countDocuments(query);
+        const products = await Product.find(query).sort(sortBy).skip(skip).limit(limit);
+
+        res.status(200).json({ success: true, products, currentPage: page, totalPage: Math.ceil(totalProducts / limit) });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
     }
-    catch (error) {
-        return res.status(500).send({ success: false, message: error.message });
-    }
-}
+};
 
 exports.getCategoryProduct = async (req, res) => {
     try {

@@ -34,9 +34,10 @@ const Navbar = () => {
           </div>
           <div className='absolute top-full left-1/2 -translate-x-1/2 pt-2 hidden group-hover:block z-10'>
             <div className='flex flex-col gap-2 w-36 py-4 px-4 bg-white border border-gray-100 text-gray-500 rounded shadow-lg'>
-              <Link to='/category/men' className='cursor-pointer hover:text-black'>MEN</Link>
-              <Link to='/category/women' className='cursor-pointer hover:text-black'>WOMEN</Link>
-              <Link to='/category/kids' className='cursor-pointer hover:text-black'>KIDS</Link>
+              <Link to='/collection/' className='cursor-pointer hover:text-black'>ALL</Link>
+              <Link to='/collection/men' className='cursor-pointer hover:text-black'>MEN</Link>
+              <Link to='/collection/women' className='cursor-pointer hover:text-black'>WOMEN</Link>
+              <Link to='/collection/kids' className='cursor-pointer hover:text-black'>KIDS</Link>
             </div>
           </div>
         </div>
